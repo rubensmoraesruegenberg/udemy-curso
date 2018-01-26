@@ -46,7 +46,13 @@ export class RestaurantsComponent implements OnInit {
     //Aqui toda vez que o component for inicializado vai ser chamado.
     //ponto ideal para Iniciar o componente.
     //E essa inicialização é que vai chamar o servipo que vai retornar os dados.
-    this.restaurants = this.restaurantsService.restaurants();
+    //Esse é como era utilizado com o array
+    //this.restaurants = this.restaurantsService.restaurants();
+    
+    //esse é utilizando o observable
+    this.restaurantsService.restaurants()
+      .subscribe(restaurants => this.restaurants = restaurants)
+      //Acima vamos pegar o que do método que retorna um "Observable" e através do subscrible jogar na propriedade restaurnats o json correto.
 
     //Para completar a injeção do serviço, precisa adicionar a classe de serviço, no provider do
     //app.modules.ts, (providers: [RestaurantsService],)
