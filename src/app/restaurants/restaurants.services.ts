@@ -4,10 +4,14 @@ import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
 import {Restaurant} from "./restaurant/restaurant.model"
 import {MEAT_API} from "../app.api"
+//Importa classe de erro.
+import {ErrorHandler} from "../app.error-handler"
 
 import {Observable} from "rxjs/Observable"
 //Esse import sé responsavl por ajudar a mapear a resposta do serviço, para pegar só o json dessa resposta
 import "rxjs/add/operator/map"
+//Esse é para tratamento de erros.
+import "rxjs/add/operator/catch"
 
 //para uma classe de serviço receber uma outra de serviço, precisamos marcar ela como "decorator @injectable" 
 //isso é só para quando a classe for recerber um serviço por "http"
@@ -59,7 +63,9 @@ export class RestaurantsService{
       //`${MEAT_API}/` essa é uma sintaxe do tipo "Template Sring"
       return this.http.get(`${MEAT_API}/restaurants`)
         .map(response => response.json())
+        .catch(ErrorHandler.handlerError)//para forçar o erro coloca uma url invalida como (`${MEAT_API}/restaurants1`))
       }
+
          
     
 }

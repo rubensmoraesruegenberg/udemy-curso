@@ -46,6 +46,7 @@ export class RestaurantsComponent implements OnInit {
     //Aqui toda vez que o component for inicializado vai ser chamado.
     //ponto ideal para Iniciar o componente.
     //E essa inicialização é que vai chamar o servipo que vai retornar os dados.
+    
     //Esse é como era utilizado com o array
     //this.restaurants = this.restaurantsService.restaurants();
     
