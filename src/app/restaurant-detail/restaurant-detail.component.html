@@ -13,22 +13,25 @@
         <div class="box box-solid">
           <div class="box-header with-border">
             <i class="fa fa-home"></i>
-
-            <h3 class="box-title">Bread &amp; Brakery</h3><span class="pull-right"><i class="fa fa-star"></i> 4.5</span>
+            <!--o objeto restaurant vem da configuração do arquivo restaurant-detail.component.html-->
+            <!--E a interrogação(?), é para aceitar null, pois na primeira chamada vem null e se não tiver vai dar um erro e não vai deixar chamar a segunda chamada para aí sim trazer carregado-->
+            <h3 class="box-title">{{restaurant?.name}}</h3><span class="pull-right"><i class="fa fa-star"></i> {{restaurant?.rating}}</span>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <div class="col-sm-3 col-xs-12">
-              <img class="box-img-detail" src="assets/img/restaurants/breadbakery.png" />
+            <!--Para evitar o erro que dava no console do navegador do objeto que era carregado null
+            coloca-se o (*ngIf="restaurant") que só vai renderizar a imagem quando o objeto restaurant não for nullo-->
+            <div class="col-sm-3 col-xs-12" *ngIf="restaurant">
+              <img class="box-img-detail" [src]="restaurant?.imagePath" />
             </div>
 
             <dl class="col-sm-9 col-xs-12">
               <dt>Categoria</dt>
               <dd>Padaria</dd>
               <dt>Quem somos</dt>
-              <dd>A Bread &amp; Brakery tem 40 anos de mercado. Fazemos os melhores doces e pães. Compre e confira.</dd>
+              <dd>{{restaurant?.about}}</dd>
               <dt>Horários</dt>
-              <dd>Funciona de segunda à sexta, de 8h às 23h</dd>
+              <dd>{{restaurant?.hours}}</dd>
             </dl>
           </div>
           <!-- /.box-body -->

@@ -61,11 +61,16 @@ export class RestaurantsService{
       // utilizando o Observale, tem que importar
       restaurants(): Observable<Restaurant[]>{
       //`${MEAT_API}/` essa é uma sintaxe do tipo "Template Sring"
-      return this.http.get(`${MEAT_API}/restaurants`)
-        .map(response => response.json())
-        .catch(ErrorHandler.handlerError)//para forçar o erro coloca uma url invalida como (`${MEAT_API}/restaurants1`))
+        return this.http.get(`${MEAT_API}/restaurants`)
+          .map(response => response.json())
+          .catch(ErrorHandler.handlerError)//para forçar o erro coloca uma url invalida como (`${MEAT_API}/restaurants1`))
       }
 
+      restaurantById(id:string):Observable<Restaurant>{
+        return this.http.get(`${MEAT_API}/restaurants/${id}`)//Até aqui só retorna um observable de restaurant
+        .map(response => response.json()) //aqui mapeia para retornar json.
+        .catch(ErrorHandler.handlerError) //Aqui tratamento de erro.
+      }
          
     
 }
