@@ -1,5 +1,5 @@
- <!-- INÍCIO DO CONTEÚDO -->
- <section class="content-header">
+<!-- INÍCIO DO CONTEÚDO -->
+<section class="content-header">
   <h1>
 
   </h1>
@@ -13,21 +13,18 @@
         <div class="box box-solid">
           <div class="box-header with-border">
             <i class="fa fa-home"></i>
-            <!--o objeto restaurant vem da configuração do arquivo restaurant-detail.component.html-->
-            <!--E a interrogação(?), é para aceitar null, pois na primeira chamada vem null e se não tiver vai dar um erro e não vai deixar chamar a segunda chamada para aí sim trazer carregado-->
-            <h3 class="box-title">{{restaurant?.name}}</h3><span class="pull-right"><i class="fa fa-star"></i> {{restaurant?.rating}}</span>
+
+            <h3 class="box-title">{{restaurant?.name}}</h3><span class="pull-right"><i class="fa fa-star"></i>{{restaurant?.rating}}</span>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <!--Para evitar o erro que dava no console do navegador do objeto que era carregado null
-            coloca-se o (*ngIf="restaurant") que só vai renderizar a imagem quando o objeto restaurant não for nullo-->
-            <div class="col-sm-3 col-xs-12" *ngIf="restaurant">
+            <div class="col-sm-3 col-xs-12" *ngIf="restaurant"><!--Evitar erro que aparece no console de o restaunra na primeira renderizada, ainda não existir-->
               <img class="box-img-detail" [src]="restaurant?.imagePath" />
             </div>
 
             <dl class="col-sm-9 col-xs-12">
               <dt>Categoria</dt>
-              <dd>Padaria</dd>
+              <dd>{{restaurant?.category}}</dd>
               <dt>Quem somos</dt>
               <dd>{{restaurant?.about}}</dd>
               <dt>Horários</dt>
@@ -36,12 +33,13 @@
           </div>
           <!-- /.box-body -->
           <div class="box-footer detail-footer">
-          <a class="pull-left detail-active" href="detail-restaurant.html">
+          <a class="pull-left detail-active" routerLinkActive="detail-active" [routerLink] = "['menu']">
              Menu
           </a>
-          <a class="pull-right" href="detail-restaurant-reviews.html">
+          <a class="pull-right" routerLinkActive="detail-active" [routerLink]="['reviews']">
              Avaliações
           </a>
+          <!-- Acima estamos criando rotas relativas do local que estou, e por isso não preciso colocar caminho raiz da pasta -->
         </div>
         </div>
       </div>
@@ -51,9 +49,8 @@
 
 
   <div class="row">
-      <!--INÍCIO DO MENU -->
-      <mt-menu></mt-menu>
-    <!-- FIM DO MENU -->
+      <router-outlet></router-outlet><!-- Ver o porque utilizou router-outlet para ira ao item de menu -->
+      <!-- router-outlet pode ser a saida do conteudo de acordo com os router-links que forem clicados -->
 </div>
 
 </section>
