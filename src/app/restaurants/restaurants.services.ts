@@ -71,6 +71,12 @@ export class RestaurantsService{
         .map(response => response.json()) //aqui mapeia para retornar json.
         .catch(ErrorHandler.handlerError) //Aqui tratamento de erro.
       }
+      //Retorna avaliações, esse vai ser chamado no componente de reviews (reviews.component.ts)
+      reviewsOfRestaurant(id:string):Observable<any>{ //any é para quando não sabemos o tipo.
+        return this.http.get(`${MEAT_API}/restaurants/${id}/reviews`)//Até aqui só retorna um observable de restaurant
+        .map(response => response.json()) //aqui mapeia para retornar json.
+        .catch(ErrorHandler.handlerError) //Aqui tratamento de erro.
+      }
          
     
 }
