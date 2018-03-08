@@ -12,6 +12,8 @@ import {Observable} from "rxjs/Observable"
 import "rxjs/add/operator/map"
 //Esse é para tratamento de erros.
 import "rxjs/add/operator/catch"
+//Importa a propriedade
+import { MenuItem } from "app/restaurant-detail/menu-item/menu-item.model";
 
 //para uma classe de serviço receber uma outra de serviço, precisamos marcar ela como "decorator @injectable" 
 //isso é só para quando a classe for recerber um serviço por "http"
@@ -74,6 +76,12 @@ export class RestaurantsService{
       //Retorna avaliações, esse vai ser chamado no componente de reviews (reviews.component.ts)
       reviewsOfRestaurant(id:string):Observable<any>{ //any é para quando não sabemos o tipo.
         return this.http.get(`${MEAT_API}/restaurants/${id}/reviews`)//Até aqui só retorna um observable de restaurant
+        .map(response => response.json()) //aqui mapeia para retornar json.
+        .catch(ErrorHandler.handlerError) //Aqui tratamento de erro.
+      }
+      //Esse serviço faz a interação dos dados do serviço da api com o menu-item.component.ts
+      menuOfRestaurant(id:string):Observable<MenuItem[]>{ //any é para quando não sabemos o tipo.
+        return this.http.get(`${MEAT_API}/restaurants/${id}/menu`)//Até aqui só retorna um observable de restaurant
         .map(response => response.json()) //aqui mapeia para retornar json.
         .catch(ErrorHandler.handlerError) //Aqui tratamento de erro.
       }
