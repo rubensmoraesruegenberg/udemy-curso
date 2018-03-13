@@ -3,11 +3,11 @@
 <!--Retira todo o html que tinha e chama o colmpontente menu-item, colocando o prefixo mt, definido na 
 criação do projeto-->
   <mt-menu-item *ngFor="let item of menu | async"
-   [menuItem]="item" (add)="addMenuItem($event)"></mt-menu-item>
+   [menuItem]="item" (add)="shoppingCard.addItem($event)"></mt-menu-item>
   <!--o Pipe (| async) vai se increver para que o observable o enxergue-->
   
 </div>
 <div class="col-md-3 col-xs-12">
-  <mt-shopping-card></mt-shopping-card>
+  <mt-shopping-card #shoppingCard></mt-shopping-card>
 </div>
 <!-- FIM DO MENU -->
