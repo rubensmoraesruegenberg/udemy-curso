@@ -5,6 +5,7 @@ import { RestaurantDetailComponent} from "./restaurant-detail/restaurant-detail.
 import { AboutComponent } from "./about/about.component";
 import { ReviewsComponent } from "./restaurant-detail/reviews/reviews.component";
 import { MenuComponent } from "./restaurant-detail/menu/menu.component";
+import { OrderComponent } from "./order/order.component"
 //Toda vez que se exporta uma coisa tem que importar o componente.
 
 //Quando o modúlo de roteamento encontrar as url definidas no path, vai emcaminhar para o component específico
@@ -18,5 +19,6 @@ export const ROUTES: Routes = [
         {path:'reviews', component:ReviewsComponent}
     ]
     },
-    {path:'about',component:AboutComponent}
+    {path:'about',component:AboutComponent},
+    {path:'order',component:OrderComponent}
 ]
